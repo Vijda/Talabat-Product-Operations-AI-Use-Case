@@ -151,23 +151,6 @@
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
         }
 
-        /* Add click indicator */
-        .insight-card::after {
-            content: 'Click to view details';
-            position: absolute;
-            bottom: 15px;
-            right: 20px;
-            font-size: 0.8em;
-            color: #FF5A00;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            font-weight: 500;
-        }
-
-        .insight-card:hover::after {
-            opacity: 1;
-        }
-
         .insight-header {
             display: flex;
             align-items: center;
@@ -756,6 +739,162 @@
         .download-btn.excel {
             background: linear-gradient(135deg, #217346, #1e6b3d);
         }
+
+        /* Expandable Card Styles */
+        .expandable-card {
+            cursor: pointer;
+            transition: box-shadow 0.3s, border 0.3s;
+            border: 1.5px solid rgba(255, 90, 0, 0.15);
+            position: relative;
+        }
+        .expandable-card:hover {
+            box-shadow: 0 25px 60px rgba(255, 90, 0, 0.18), 0 2px 8px rgba(0,0,0,0.04);
+            border: 1.5px solid #FF7A30;
+        }
+        .expandable-card .chevron {
+            margin-left: auto;
+            font-size: 1.5em;
+            transition: transform 0.3s;
+            color: #FF5A00;
+            user-select: none;
+        }
+        .expandable-card .chevron.rotated {
+            transform: rotate(180deg);
+        }
+        .expandable-card.expanded-card {
+            border: 2.5px solid #FF7A30;
+            box-shadow: 0 30px 80px rgba(255, 90, 0, 0.22), 0 2px 8px rgba(0,0,0,0.06);
+            background: linear-gradient(135deg, #fff7f0 60%, #f8f9fa 100%);
+        }
+        .expandable-list {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            margin-top: 0;
+            padding-left: 24px;
+            /* Remove counter for bullet points */
+            counter-reset: none;
+        }
+        .expandable-list.expanded {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 18px;
+        }
+        .expandable-list .insight-item {
+            border-left: 4px solid #FF5A00;
+            background: #fff6f0;
+            margin-bottom: 10px;
+            border-radius: 0 12px 12px 0;
+            transition: background 0.3s;
+            position: relative;
+            font-weight: 500;
+            list-style: disc inside;
+        }
+        .expandable-list .insight-item:hover {
+            background: #ffe5d0;
+        }
+        /* Remove number prefix */
+        .expandable-list .insight-item::before {
+            content: none;
+        }
+        .expandable-list.no-bullets {
+            padding-left: 0;
+        }
+        .insight-details {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .insight-point {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, #fff7f0 80%, #f8f9fa 100%);
+            border-radius: 14px;
+            box-shadow: 0 2px 10px rgba(255, 90, 0, 0.06);
+            padding: 16px 22px;
+            font-size: 1.09em;
+            font-weight: 600;
+            color: #2E2E2E;
+            position: relative;
+            transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+            border-left: 6px solid #FF5A00;
+        }
+        .insight-point .insight-bullet {
+            font-size: 1.5em;
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #FF5A00 60%, #FF7A30 100%);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(255, 90, 0, 0.10);
+        }
+        .insight-point.insight-llm {
+            background: linear-gradient(90deg, #fff7f0 80%, #f8f9fa 100%);
+            border-left: 6px solid #FF5A00;
+        }
+        .insight-point.insight-llm .insight-bullet.llm {
+            background: linear-gradient(135deg, #FF5A00 60%, #FF7A30 100%);
+        }
+        .insight-point .insight-text {
+            flex: 1;
+            font-size: 1.08em;
+            font-weight: 600;
+            color: #2E2E2E;
+        }
+        .insight-point:hover {
+            box-shadow: 0 6px 24px rgba(255, 90, 0, 0.13);
+            transform: translateY(-2px) scale(1.02);
+            background: linear-gradient(90deg, #ffe5d0 80%, #f8f9fa 100%);
+        }
+        .insight-point.insight-llm:hover {
+            box-shadow: 0 6px 24px rgba(255, 90, 0, 0.13);
+            background: linear-gradient(90deg, #ffe5d0 80%, #f8f9fa 100%);
+        }
+        .insight-point.insight-key {
+            background: linear-gradient(90deg, #f0f6ff 80%, #f8f9fa 100%);
+            border-left: 6px solid #0056b3;
+        }
+        .insight-point.insight-key .insight-bullet.key {
+            background: linear-gradient(135deg, #0056b3 60%, #2176ff 100%);
+        }
+        .insight-point .insight-text {
+            flex: 1;
+            font-size: 1.08em;
+            font-weight: 600;
+            color: #2E2E2E;
+        }
+        .insight-point:hover {
+            box-shadow: 0 6px 24px rgba(255, 90, 0, 0.13);
+            transform: translateY(-2px) scale(1.02);
+            background: linear-gradient(90deg, #ffe5d0 80%, #f8f9fa 100%);
+        }
+        .insight-point.insight-key:hover {
+            box-shadow: 0 6px 24px rgba(0, 86, 179, 0.13);
+            background: linear-gradient(90deg, #e0edff 80%, #f8f9fa 100%);
+        }
+        .expand-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #fff7f0 60%, #ffe5d0 100%);
+            color: #FF5A00;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 10px 18px;
+            font-size: 1.05em;
+            margin-top: 18px;
+            box-shadow: 0 2px 8px rgba(255,90,0,0.07);
+            gap: 8px;
+        }
+        .expand-icon {
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -787,6 +926,10 @@
                         <li class="insight-item">High delivery fees and pricing concerns </li>
                         <li class="insight-item">Customer service response time issues </li>
                     </ul>
+                    <div class="expand-message">
+                        <span class="expand-icon">🔎</span>
+                        Click to view expanded details
+                    </div>
                 </div>
 
                 <div class="insight-card" onclick="openModal('positiveModal')">
@@ -799,6 +942,10 @@
                         <li class="insight-item">Friendly delivery service and fast delivery </li>
                         <li class="insight-item">Good restaurant variety and selection </li>
                     </ul>
+                    <div class="expand-message">
+                        <span class="expand-icon">🔎</span>
+                        Click to view expanded details
+                    </div>
                 </div>
 
                 <div class="insight-card" onclick="openModal('recommendationsModal')">
@@ -811,6 +958,10 @@
                         <li class="insight-item">Improve app stability and performance </li>
                         <li class="insight-item">Review pricing strategy and delivery fees </li>
                     </ul>
+                    <div class="expand-message">
+                        <span class="expand-icon">🔎</span>
+                        Click to view expanded details
+                    </div>
                 </div>
             </div>
         </div>
@@ -998,13 +1149,28 @@
                         <div class="insight-icon">🎯</div>
                         <div class="insight-title">LLM Analysis Features</div>
                     </div>
-                    <ul class="insight-list">
-                        <li class="insight-item">Arabic to English Translation</li>
-                        <li class="insight-item">Sentiment Classification (POSITIVE/NEGATIVE/NEUTRAL)</li>
-                        <li class="insight-item">Confidence Level Assessment</li>
-                        <li class="insight-item">Issue Extraction & Categorization</li>
-                        <li class="insight-item">Customer Suggestions Analysis</li>
-                    </ul>
+                    <div class="insight-details">
+                        <div class="insight-point insight-llm">
+                            <span class="insight-bullet llm">🌐</span>
+                            <span class="insight-text">Arabic to English Translation</span>
+                        </div>
+                        <div class="insight-point insight-llm">
+                            <span class="insight-bullet llm">📊</span>
+                            <span class="insight-text">Sentiment Classification (POSITIVE/NEGATIVE/NEUTRAL)</span>
+                        </div>
+                        <div class="insight-point insight-llm">
+                            <span class="insight-bullet llm">🔎</span>
+                            <span class="insight-text">Confidence Level Assessment</span>
+                        </div>
+                        <div class="insight-point insight-llm">
+                            <span class="insight-bullet llm">🗂️</span>
+                            <span class="insight-text">Issue Extraction & Categorization</span>
+                        </div>
+                        <div class="insight-point insight-llm">
+                            <span class="insight-bullet llm">💡</span>
+                            <span class="insight-text">Customer Suggestions Analysis</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="insight-card">
@@ -1012,13 +1178,28 @@
                         <div class="insight-icon">⚡</div>
                         <div class="insight-title">Key Insights</div>
                     </div>
-                    <ul class="insight-list">
-                        <li class="insight-item">52% of reviews express concerns</li>
-                        <li class="insight-item">44% are positive experiences</li>
-                        <li class="insight-item">4% are neutral feedback </li>
-                        <li class="insight-item">High confidence LLM analysis</li>
-                        <li class="insight-item">Arabic language support included</li>
-                    </ul>
+                    <div class="insight-details">
+                        <div class="insight-point insight-key">
+                            <span class="insight-bullet key">❗</span>
+                            <span class="insight-text">52% of reviews express concerns</span>
+                        </div>
+                        <div class="insight-point insight-key">
+                            <span class="insight-bullet key">✨</span>
+                            <span class="insight-text">44% are positive experiences</span>
+                        </div>
+                        <div class="insight-point insight-key">
+                            <span class="insight-bullet key">😐</span>
+                            <span class="insight-text">4% are neutral feedback</span>
+                        </div>
+                        <div class="insight-point insight-key">
+                            <span class="insight-bullet key">🔒</span>
+                            <span class="insight-text">High confidence LLM analysis</span>
+                        </div>
+                        <div class="insight-point insight-key">
+                            <span class="insight-bullet key">🌍</span>
+                            <span class="insight-text">Arabic language support included</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1153,6 +1334,8 @@
                 }, 500);
             });
         });
+
+        // Remove expandable card functionality for comprehensive insights
     </script>
 </body>
 </html>
